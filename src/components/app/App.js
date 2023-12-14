@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import Loading from '../loading/loading';
 // import Error from '../error/error';
 import { tovarsData } from '../../config';
+import useTelegram from '../../hooks/useTelegram/useTelegram';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -17,6 +18,8 @@ function App() {
 
   const [tovars, setTovars] = useState([]);
   const [basket, setBasket] = useState([]);
+
+  const { tg } = useTelegram();
 
   // const { request } = useHttp();
 
@@ -29,6 +32,7 @@ function App() {
   );
   
   useEffect(() => {
+    tg.ready();
     setTovars(tovarsData)
     setLoading(false)
     // setLoading(true);
