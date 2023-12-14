@@ -15,6 +15,7 @@ const SendButton = ({totalLength, totalPrice, bakset}) => {
     return (
         <button onClick={sendData} className="send__data">
           Оформить заказ из {totalLength} товаров на {totalPrice} руб
+          {tg.initDataUnsafe?.user}
         </button>
     );
 }
