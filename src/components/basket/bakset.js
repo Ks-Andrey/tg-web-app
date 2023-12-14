@@ -10,6 +10,8 @@ const Basket = ({ basket, setBasket, totalLength, totalPrice }) => {
     <BasketItem key={item.id} setBasket={setBasket} basket={basket} {...item} />
   ));
 
+  console.log(basket);
+
   return (
     <div className="basket__container">
       {basketTovars.length > 0 ? (
