@@ -32,7 +32,6 @@ function App() {
   );
   
   useEffect(() => {
-    tg.ready();
     setTovars(tovarsData)
     setLoading(false)
     // setLoading(true);
@@ -46,7 +45,7 @@ function App() {
     //     setError(true);
     //     setLoading(false);
     //   })
-  }, [tg]);
+  }, []);
 
   return (
     <div className='container'>
