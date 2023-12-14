@@ -6,6 +6,8 @@ const SendButton = ({totalLength, totalPrice, bakset}) => {
     const { tg, onClose } = useTelegram();
 
     const sendData = async () => {
+        await tg.ready();
+
         tg.sendData(JSON.stringify(bakset));
         onClose();
     }
