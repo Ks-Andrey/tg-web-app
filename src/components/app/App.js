@@ -46,7 +46,7 @@ function App() {
     //     setError(true);
     //     setLoading(false);
     //   })
-  }, []);
+  }, [tg]);
 
   return (
     <div className='container'>
