@@ -7,19 +7,19 @@ import Basket from '../basket/bakset';
 import BasketButton from '../basketBtn/basketBtn';
 
 import { useEffect, useState } from 'react';
-import useHttp from '../../hooks/useHttp/useHttp';
+// import useHttp from '../../hooks/useHttp/useHttp';
 import Loading from '../loading/loading';
-import Error from '../error/error';
+// import Error from '../error/error';
 import { tovarsData } from '../../config';
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  //const [error, setError] = useState(false);
 
   const [tovars, setTovars] = useState([]);
   const [basket, setBasket] = useState([]);
 
-  const { request } = useHttp();
+  // const { request } = useHttp();
 
   useEffect(() => {
     setTovars(tovarsData)
@@ -56,7 +56,7 @@ function App() {
       </Routes>
       { basket.length === 0 ? null : <BasketButton basket={basket} /> }
       {loading && <Loading />}
-      {error && <Error text='Ошибка загрузки'/>}
+      {/* {error && <Error text='Ошибка загрузки'/>} */}
     </div>
   );
 }
