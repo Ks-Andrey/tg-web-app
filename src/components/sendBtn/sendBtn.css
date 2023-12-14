@@ -1,0 +1,18 @@
+.send__data{
+    background: rgb(46, 211, 0);
+    width: calc(100% - 10px);
+    max-width: 100%;
+    position: fixed;
+    bottom: 10px;
+    box-sizing: border-box;
+    left: 5px;
+    right: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    border: none;
+    outline: none;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}

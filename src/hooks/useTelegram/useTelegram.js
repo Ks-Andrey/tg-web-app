@@ -1,7 +1,13 @@
-const tg = window.Telegram.WebApp;
+const tg = window?.Telegram?.WebApp;
 
-const useTelegram = () => {
-    return {tg};
-};
+export default function useTelegram() {
 
-export default useTelegram;
+    const onClose = () => {
+        tg.close()
+    }
+
+    return {
+        onClose,
+        tg
+    }
+}

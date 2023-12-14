@@ -1,8 +1,9 @@
 import Tovar from "../tovar/tovar";
+import BasketButton from '../basketBtn/basketBtn';
 
 import './catalog.css'
 
-const Catalog = ({ tovars, setBasket, basket }) => {
+const Catalog = ({ tovars, setBasket, basket, totalLength, totalPrice}) => {
     const onAddToBasket = (id) => {
         const selectedTovar = tovars.find(tovar => tovar.id === id);
         const isAdded = basket.find(tovar => tovar.id === id);
@@ -20,9 +21,12 @@ const Catalog = ({ tovars, setBasket, basket }) => {
     });
 
     return (
-        <div className="catalog__container">
-            {tovarsArray}
-        </div>
+        <>
+            <div className="catalog__container">
+                {tovarsArray}
+            </div>
+            { basket.length === 0 ? null : <BasketButton totalLength={totalLength} totalPrice={totalPrice} /> }
+        </>
     );
 }
 

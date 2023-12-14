@@ -4,7 +4,6 @@ import './App.css';
 
 import Catalog from '../catalog/catalog';
 import Basket from '../basket/bakset';
-import BasketButton from '../basketBtn/basketBtn';
 
 import { useEffect, useState } from 'react';
 // import useHttp from '../../hooks/useHttp/useHttp';
@@ -21,6 +20,14 @@ function App() {
 
   // const { request } = useHttp();
 
+  const { totalPrice, totalLength } = basket.reduce(
+    (acc, { price, length }) => ({
+      totalPrice: acc.totalPrice + price * length,
+      totalLength: acc.totalLength + length,
+    }),
+    { totalPrice: 0, totalLength: 0 }
+  );
+  
   useEffect(() => {
     setTovars(tovarsData)
     setLoading(false)
@@ -40,8 +47,10 @@ function App() {
   return (
     <div className='container'>
       <Routes>
-        <Route path='/' element={
+        <Route path='/day/:id' element={
           <Catalog 
+            totalPrice={totalPrice}
+            totalLength={totalLength}
             tovars={tovars}
             setBasket={setBasket}
             basket={basket}
@@ -51,10 +60,11 @@ function App() {
           <Basket
             basket={basket}
             setBasket={setBasket}
+            totalPrice={totalPrice}
+            totalLength={totalLength}
           />
         } />
       </Routes>
-      { basket.length === 0 ? null : <BasketButton basket={basket} /> }
       {loading && <Loading />}
       {/* {error && <Error text='Ошибка загрузки'/>} */}
     </div>
