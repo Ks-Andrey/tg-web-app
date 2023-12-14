@@ -2,10 +2,11 @@ import useTelegram from '../../hooks/useTelegram/useTelegram';
 
 import './sendBtn.css'
 
-const SendButton = ({totalLength, totalPrice}) => {
-    const { onClose } = useTelegram();
+const SendButton = ({totalLength, totalPrice, bakset}) => {
+    const { tg, onClose } = useTelegram();
 
     const sendData = async () => {
+        await tg.sendData(JSON.stringify(bakset));
         onClose();
     }
 
