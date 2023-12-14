@@ -1,0 +1,26 @@
+.catalog__card{
+    width: 170px;
+    max-width: 100%;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #c9c9c9;
+    background: #fff;
+}
+
+.catalog__card .data{
+    margin-top: 15px;
+}
+
+.catalog__card .data .price{
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.catalog__card .data button{
+    margin-top: 12px;
+}
+
+.catalog__card .data .score__container{
+    margin-top: 18px;
+}

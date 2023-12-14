@@ -1,0 +1,6 @@
+.basket__container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}

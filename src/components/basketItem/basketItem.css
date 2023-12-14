@@ -1,0 +1,31 @@
+.basket__item{
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background: #fff;
+    gap: 10px;
+    border: 1px solid #c9c9c9;
+}
+
+.basket__item .image{
+    width: 30%;
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.basket__item .image img{
+    width: 100%;
+    max-width: 100%;
+    display: block;
+}
+
+.basket__item .data .price{
+    font-weight: bold;
+    margin-top: 10px;
+}

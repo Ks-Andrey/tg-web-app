@@ -1,0 +1,22 @@
+.score__container{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.score__container button{
+    padding: 5px;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 2px solid #4294ff;
+    background: transparent;
+    color: #4294ff;
+    margin-top: 0 !important;
+}
+

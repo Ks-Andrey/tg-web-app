@@ -1,0 +1,19 @@
+.catalog__container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.catalog__card .image{
+    height: 100px;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.catalog__card .image img{
+    width: 100%;
+    max-width: 100%;
+    display: block;
+}
