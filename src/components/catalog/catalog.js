@@ -1,9 +1,13 @@
 import Tovar from "../tovar/tovar";
 import BasketButton from '../basketBtn/basketBtn';
 
+import useTelegram from "../../hooks/useTelegram/useTelegram";
+
 import './catalog.css'
 
 const Catalog = ({ tovars, setBasket, basket, totalLength, totalPrice}) => {
+    const { onExpand } = useTelegram();
+
     const onAddToBasket = (id) => {
         const selectedTovar = tovars.find(tovar => tovar.id === id);
         const isAdded = basket.find(tovar => tovar.id === id);
@@ -13,6 +17,8 @@ const Catalog = ({ tovars, setBasket, basket, totalLength, totalPrice}) => {
         } else {
             setBasket([...basket, { ...selectedTovar, length: 1 }]);
         }
+
+        onExpand();
     }
 
     const tovarsArray = tovars.map(tovar => {

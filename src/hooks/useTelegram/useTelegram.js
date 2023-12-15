@@ -6,8 +6,13 @@ export default function useTelegram() {
         tg.close()
     }
 
+    const onExpand = () => {
+        tg.expand();
+    }
+
     return {
         onClose,
+        onExpand,
         tg
     }
 }
