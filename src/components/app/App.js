@@ -5,11 +5,10 @@ import './App.css';
 import Catalog from '../catalog/catalog';
 import Basket from '../basket/bakset';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import useHttp from '../../hooks/useHttp/useHttp';
 import Loading from '../loading/loading';
 import Error from '../error/error';
-// import { tovarsData } from '../../config';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -20,7 +19,7 @@ function App() {
 
   const { request } = useHttp();
 
-  const getTovars = (id) => {
+  const getTovars = useCallback((id) => {
     setLoading(true);
     request(id)
       .then(items => {
@@ -32,7 +31,7 @@ function App() {
         setError(true);
         setLoading(false);
       })
-  }
+  }, [request]);
   
   const { totalPrice, totalLength } = basket.reduce(
     (acc, { price, length }) => ({

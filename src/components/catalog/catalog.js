@@ -15,6 +15,7 @@ const Catalog = ({ tovars, setBasket, basket, totalLength, totalPrice, getTovars
         if (id) {
             getTovars(id);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
     const onAddToBasket = (tovarid) => {

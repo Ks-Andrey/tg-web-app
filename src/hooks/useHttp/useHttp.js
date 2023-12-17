@@ -1,4 +1,4 @@
-const _api = 'https://680f-79-170-109-221.ngrok-free.app'
+const _api = 'http://localhost:8080'
 
 const useHttp = () => {
     const request =  async (dayIndex) => {

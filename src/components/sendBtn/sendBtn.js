@@ -6,6 +6,7 @@ const SendButton = ({totalLength, totalPrice, basket}) => {
     const { tg } = useTelegram();
 
     const sendData = async () => {
+        console.log(basket);
         tg.sendData(JSON.stringify(basket));
     }
 
