@@ -1,6 +1,6 @@
 import './score.css';
 
-const Score = ({ score, setScore, basket, id }) => {
+const Score = ({ score, setScore, basket, tovarid }) => {
   const onPlus = () => {
     updateScore(1);
   };
@@ -15,14 +15,14 @@ const Score = ({ score, setScore, basket, id }) => {
 
   const updateScore = (change) => {
     const newTovars = basket.map((item) =>
-      item.id === id ? { ...item, length: item.length + change } : item
+      item.tovarid === tovarid ? { ...item, length: item.length + change } : item
     );
 
     setScore(newTovars);
   };
 
   const removeItem = () => {
-    const updatedBasket = basket.filter((item) => item.id !== id);
+    const updatedBasket = basket.filter((item) => item.tovarid !== tovarid);
     setScore(updatedBasket);
   };
 
