@@ -18,6 +18,7 @@ function App() {
   const [tovars, setTovars] = useState([]);
   const [basket, setBasket] = useState([]);
 
+ 
   // const { request } = useHttp();
 
   const { totalPrice, totalLength } = basket.reduce(
