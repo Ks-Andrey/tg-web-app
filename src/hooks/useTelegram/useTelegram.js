@@ -14,6 +14,5 @@ export default function useTelegram() {
         onClose,
         onExpand,
         tg,
-        user: tg.initDataUnsafe?.user
     }
 }
