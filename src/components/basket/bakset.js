@@ -27,7 +27,7 @@ const Basket = ({ basket, setBasket, totalLength, totalPrice }) => {
     <>
       <div className="catalog__header">
         <button onClick={handleBack} className="back__btn"><img src={back} alt="back"/></button>
-        <div className="username">{user.name}</div>
+        <div className="username">{user.username}</div>
       </div>
       <div className="basket__container">
         {basketTovars.length > 0 ? (
