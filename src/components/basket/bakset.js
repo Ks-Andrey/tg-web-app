@@ -11,7 +11,7 @@ const Basket = ({ basket, setBasket, totalLength, totalPrice }) => {
   const navigate = useNavigate();
 
   const basketTovars = basket.map(item => (
-    <BasketItem key={item.tovarid} setBasket={setBasket} basket={basket} {...item} />
+    <BasketItem key={item.id} setBasket={setBasket} basket={basket} {...item} />
   ));
 
   const handleBack = () => {

@@ -5,8 +5,9 @@ import './App.css';
 import Catalog from '../catalog/catalog';
 import Basket from '../basket/bakset';
 
-import { useCallback, useState } from 'react';
+import { useState, useEffect } from 'react';
 import useHttp from '../../hooks/useHttp/useHttp';
+
 import Loading from '../loading/loading';
 import Error from '../error/error';
 
@@ -18,20 +19,37 @@ function App() {
   const [basket, setBasket] = useState([]);
 
   const { request } = useHttp();
-
-  const getTovars = useCallback((id) => {
-    setLoading(true);
-    request(id)
-      .then(items => {
-        setTovars(items);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error(error.message);
-        setError(true);
-        setLoading(false);
-      })
+  
+  useEffect(() => {
+    const id = window.location.href.match(/day\/(.*)/g)[0].replace('day/', '');
+    
+    const getTovars = (id) => {
+      setLoading(true);
+      request(id)
+        .then(res => {
+          const tovars = res?.data?.tovars.map(({ name, price, imagelink, length, tovarid }) => ({
+            name,
+            price,
+            image: imagelink,
+            length,
+            id: tovarid,
+          }));
+  
+          setTovars(tovars);
+          setLoading(false);
+        })
+        .catch(error => {
+          console.error(error.message);
+          setError(true);
+          setLoading(false);
+        })
+    }
+  
+    if (id && request) {
+      getTovars(id);
+    }
   }, [request]);
+  
   
   const { totalPrice, totalLength } = basket.reduce(
     (acc, { price, length }) => ({
@@ -46,7 +64,6 @@ function App() {
       <Routes>
         <Route path='/day/:id' element={
           <Catalog 
-            getTovars={getTovars}
             totalPrice={totalPrice}
             totalLength={totalLength}
             tovars={tovars}
