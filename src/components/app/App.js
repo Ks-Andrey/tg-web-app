@@ -35,8 +35,11 @@ function App() {
             length,
             id: tovarid,
           }));
+
+          if (tovars) {
+            setTovars(tovars);          
+          }
   
-          setTovars(tovars);
           setLoading(false);
         })
         .catch(error => {
