@@ -21,7 +21,8 @@ function App() {
   const { request } = useHttp();
   
   useEffect(() => {
-    const id = window.location.href.match(/day\/(.*)/g)[0].replace('day/', '');
+    const matchResult = window.location.href.match(/day\/(.*)/g);
+    const id = matchResult ? matchResult[0]?.replace('day/', '') : null;
     
     const getTovars = (id) => {
       setLoading(true);
@@ -69,6 +70,7 @@ function App() {
             tovars={tovars}
             setBasket={setBasket}
             basket={basket}
+            loading={loading}
           />} 
         />
         <Route path='/basket' element={
