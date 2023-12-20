@@ -6,7 +6,7 @@ import useTelegram from "../../hooks/useTelegram/useTelegram";
 
 import './catalog.css'
 
-const Catalog = ({ tovars, setBasket, basket, totalLength, totalPrice, loading}) => {
+const Catalog = ({ tovars, setBasket, basket, totalLength, totalPrice, loading, error}) => {
     const { onExpand } = useTelegram();
 
     const onAddToBasket = (id) => {
@@ -30,7 +30,7 @@ const Catalog = ({ tovars, setBasket, basket, totalLength, totalPrice, loading})
     return (
         <>
             <div className="catalog__container">
-                {tovars.length > 0 ? tovarsArray : !loading && <Error text={"Каталог пуст!"}/>}
+                {tovars.length > 0 ? tovarsArray : (!loading && !error) && <Error text={"Каталог пуст!"}/>}
             </div>
             { basket.length === 0 ? null : <BasketButton totalLength={totalLength} totalPrice={totalPrice} /> }
         </>

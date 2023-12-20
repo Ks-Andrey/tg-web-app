@@ -74,6 +74,7 @@ function App() {
             setBasket={setBasket}
             basket={basket}
             loading={loading}
+            error={error}
           />} 
         />
         <Route path='/basket' element={

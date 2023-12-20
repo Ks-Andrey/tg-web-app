@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 
-const _api = 'http://45.141.103.148:8080'
+const _api = 'http://localhost:8080'
 
 const useHttp = () => {
     const request =  useCallback(async (dayIndex) => {
