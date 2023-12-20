@@ -5,55 +5,46 @@ import './App.css';
 import Catalog from '../catalog/catalog';
 import Basket from '../basket/bakset';
 
-import { useState, useEffect } from 'react';
+import { useCallback, useState } from 'react';
 import useHttp from '../../hooks/useHttp/useHttp';
 
 import Loading from '../loading/loading';
 import Error from '../error/error';
+import OrderDetails from '../order/order';
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const [tovars, setTovars] = useState([]);
   const [basket, setBasket] = useState([]);
 
   const { request } = useHttp();
-  
-  useEffect(() => {
-    const matchResult = window.location.href.match(/day\/(.*)/g);
-    const id = matchResult ? matchResult[0]?.replace('day/', '') : null;
-    
-    const getTovars = (id) => {
-      setLoading(true);
-      request(id)
-        .then(res => {
-          const tovars = res?.data?.tovars.map(({ name, price, imagelink, length, tovarid }) => ({
-            name,
-            price,
-            image: imagelink,
-            length,
-            id: tovarid,
-          }));
 
-          if (tovars) {
-            setTovars(tovars);          
-          }
-  
-          setLoading(false);
-        })
-        .catch(error => {
-          console.error(error.message);
-          setError(true);
-          setLoading(false);
-        })
-    }
-  
-    if (id && request) {
-      getTovars(id);
-    }
-  }, [request]);
-  
+  const getTovars = useCallback((id) => {
+    setLoading(true);
+    request('/api/tovars/' + id)
+      .then(res => {
+        const tovars = res?.data?.tovars.map(({ name, price, imagelink, length, tovarid }) => ({
+          name,
+          price,
+          image: imagelink,
+          length,
+          id: tovarid,
+        }));
+
+        if (tovars) {
+          setTovars(tovars);          
+        }
+
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error(error.message);
+        setError(true);
+        setLoading(false);
+      })
+  }, [request])
   
   const { totalPrice, totalLength } = basket.reduce(
     (acc, { price, length }) => ({
@@ -75,6 +66,7 @@ function App() {
             basket={basket}
             loading={loading}
             error={error}
+            getTovars={getTovars}
           />} 
         />
         <Route path='/basket' element={
@@ -85,6 +77,13 @@ function App() {
             totalLength={totalLength}
           />
         } />
+        <Route path='/orders/:id' element={
+          <OrderDetails 
+            setError={setError}
+            setLoading={setLoading}
+          />
+        }/>
+        <Route path='/' element={<Error text={'Страница не найдена!'}/>}/>
       </Routes>
       {loading && <Loading />}
       {error && <Error text='Ошибка загрузки'/>}

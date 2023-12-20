@@ -2,12 +2,23 @@ import Tovar from "../tovar/tovar";
 import BasketButton from '../basketBtn/basketBtn';
 import Error from "../error/error";
 
+import { useEffect } from "react";
+
 import useTelegram from "../../hooks/useTelegram/useTelegram";
 
 import './catalog.css'
+import { useParams } from "react-router-dom";
 
-const Catalog = ({ tovars, setBasket, basket, totalLength, totalPrice, loading, error}) => {
+const Catalog = ({ tovars, setBasket, basket, totalLength, totalPrice, loading, error, getTovars}) => {
     const { onExpand } = useTelegram();
+    const { id } = useParams();
+
+    useEffect(() => {      
+        if (id) {
+          getTovars(id);
+        }
+        console.log(1);
+    }, [getTovars, id]);
 
     const onAddToBasket = (id) => {
         const selectedTovar = tovars.find(tovar => tovar.id === id);
