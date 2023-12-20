@@ -33,11 +33,11 @@ function App() {
           id: tovarid,
         }));
 
+        setLoading(false);
+
         if (tovars) {
           setTovars(tovars);          
         }
-
-        setLoading(false);
       })
       .catch(error => {
         console.error(error.message);

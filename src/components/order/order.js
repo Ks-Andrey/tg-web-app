@@ -47,7 +47,7 @@ const OrderDetails = ({setError, setLoading}) => {
   const dayName = daysOfWeek[dayIndex];
 
   return (
-    <div className="order__container">
+    <div className="order-data__container">
       <h3>Информация о заказе:</h3>
       <div className="order-info__container">
         <ul>
@@ -64,7 +64,7 @@ const OrderDetails = ({setError, setLoading}) => {
         </ul>
       </div>
       <h3>Состав заказа: </h3>
-      <div className="basket__container">
+      <div className="basket-data__container">
         {basket.map(({ name, price, length }) => (
           <OrderTovar key={name} name={name} price={price} count={length} />
         ))}
